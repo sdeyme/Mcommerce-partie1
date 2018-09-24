@@ -28,6 +28,16 @@ public class ProductController {
     @Autowired
     private ProductDao productDao;
 
+    // Trier les produits par ordre alphanumérique
+
+    @RequestMapping(value = "/TriProduits", method = RequestMethod.GET, produces = "application/json")
+
+    public List<Product> trierProduitsParOrdreAlphabetique () {
+
+        return productDao.OrderByNom();
+    }
+
+
     // Calculer la marge de chaque produit (différence entre prix d‘achat et prix de vente)
 
     @RequestMapping(value = "/AdminProduits", method = RequestMethod.GET, produces = "application/json")
