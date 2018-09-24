@@ -1,0 +1,163 @@
+{
+	"info": {
+		"_postman_id": "798cb6fd-57cc-4f29-a971-3a5b285b7581",
+		"name": "CollectionTests OpenClassRooms TUTO MCommerce-partie1",
+		"description": "Partie 4 - Test des méthodes créées",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Partie 1",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "localhost:9090/AdminProduits",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"AdminProduits"
+					]
+				},
+				"description": "requête pour la partie 1"
+			},
+			"response": []
+		},
+		{
+			"name": "Partie 2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:9090/TriProduits",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"TriProduits"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Partie 3 - OK 1",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"id\": 4,\r\n\"nom\": \"Lave-vaisselle\",\r\n\"prix\": 700,\r\n\"prixAchat\": 0\r\n}"
+				},
+				"url": {
+					"raw": "localhost:9090/Produits",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"Produits"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Partie 3 - KO 1",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"id\": 5,\r\n\"nom\": \"Four\",\r\n\"prix\": 0,\r\n\"prixAchat\": 0\r\n}"
+				},
+				"url": {
+					"raw": "localhost:9090/Produits",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"Produits"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Partie 3 - OK 2",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"id\": 1,\r\n\"nom\": \"gant\",\r\n\"prix\": 5,\r\n\"prixAchat\": 1\r\n}"
+				},
+				"url": {
+					"raw": "localhost:9090/Produits",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"Produits"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Partie 3 - KO 2",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"id\": 1,\r\n\"nom\": \"Poele\",\r\n\"prix\": 0,\r\n\"prixAchat\": 0\r\n}"
+				},
+				"url": {
+					"raw": "localhost:9090/Produits",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"Produits"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
