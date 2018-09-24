@@ -8,9 +8,7 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +16,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -35,13 +34,19 @@ public class ProductController {
 
     public String calculerMargeProduit() {
 
-        JSONObject jsonObject = new JSONObject();
+        StringBuffer buffer = new StringBuffer("{");
 
-        List<Product> all = productDao.findAll();
+        Iterator<Product> it = productDao.findAll().iterator();
+        Product prd;
+        while (it.hasNext()) {
+            prd = it.next();
+            buffer.append("\""+prd.toString()+"\""+":"+(prd.getPrix()-prd.getPrixAchat()));
+            if (it.hasNext())
+                buffer.append(",");
+        }
 
-        all.stream().forEach(p -> jsonObject.put(p.toString(), p.getPrix() - p.getPrixAchat()));
-
-        return jsonObject.toString();
+        buffer.append("}");
+        return buffer.toString();
     }
 
 
