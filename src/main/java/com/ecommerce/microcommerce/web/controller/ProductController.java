@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +28,21 @@ public class ProductController {
 
     @Autowired
     private ProductDao productDao;
+
+    // Calculer la marge de chaque produit (différence entre prix d‘achat et prix de vente)
+
+    @RequestMapping(value = "/AdminProduits", method = RequestMethod.GET, produces = "application/json")
+
+    public String calculerMargeProduit() {
+
+        JSONObject jsonObject = new JSONObject();
+
+        List<Product> all = productDao.findAll();
+
+        all.stream().forEach(p -> jsonObject.put(p.toString(), p.getPrix() - p.getPrixAchat()));
+
+        return jsonObject.toString();
+    }
 
 
     //Récupérer la liste des produits
