@@ -1,5 +1,6 @@
 package com.ecommerce.microcommerce.model;
 
+import com.ecommerce.microcommerce.web.exceptions.ProduitGratuitException;
 import com.fasterxml.jackson.annotation.JsonFilter;
 import org.hibernate.validator.constraints.Length;
 
@@ -19,7 +20,7 @@ public class Product {
     @Length(min=3, max=20, message = "Nom trop long ou trop court. Et oui messages sont plus stylés que ceux de Spring")
     private String nom;
 
-    @Min(value = 1)
+    //@Min(value = 1)
     private int prix;
 
     //information que nous ne souhaitons pas exposer
@@ -29,8 +30,11 @@ public class Product {
     public Product() {
     }
 
+    private static final String ERROR_NO_FREEPRODUCT = "Le prix de vente d'un produit ne peut être à zéro";
+
     //constructeur pour nos tests
     public Product(int id, String nom, int prix, int prixAchat) {
+        if (prix == 0) throw new ProduitGratuitException(ERROR_NO_FREEPRODUCT);
         this.id = id;
         this.nom = nom;
         this.prix = prix;
@@ -58,6 +62,7 @@ public class Product {
     }
 
     public void setPrix(int prix) {
+        if (prix == 0) throw new ProduitGratuitException(ERROR_NO_FREEPRODUCT);
         this.prix = prix;
     }
 
